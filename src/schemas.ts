@@ -90,6 +90,17 @@ export const QuestionsResponseSchema = z.object({
 	questions: z.array(QuestionSchema),
 });
 
+export const ConceptMapResponseSchema = z.object({
+	mergeGroups: z.array(
+		z.object({
+			canonicalId: z.string(),
+			mergedIds: z.array(z.string()),
+			canonicalSurfaceForm: z.string(),
+		}),
+	),
+	crossChapterRelationships: z.array(RelationshipSchema),
+});
+
 export type Phase = z.infer<typeof PhaseSchema>;
 export type Prerequisite = z.infer<typeof PrerequisiteSchema>;
 export type Concept = z.infer<typeof ConceptSchema>;
@@ -97,6 +108,8 @@ export type Relationship = z.infer<typeof RelationshipSchema>;
 export type SurveyResponse = z.infer<typeof SurveyResponseSchema>;
 export type Question = z.infer<typeof QuestionSchema>;
 export type QuestionsResponse = z.infer<typeof QuestionsResponseSchema>;
+export type ConceptMapResponse = z.infer<typeof ConceptMapResponseSchema>;
 
 export const surveyJsonSchema = z.toJSONSchema(SurveyResponseSchema);
 export const questionsJsonSchema = z.toJSONSchema(QuestionsResponseSchema);
+export const conceptMapJsonSchema = z.toJSONSchema(ConceptMapResponseSchema);
